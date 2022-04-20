@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+
+    <div class="page-header">
+        <h1>Color Finder</h1>
+    </div>
+    <hr>
+    <div class="container">
+        <div class="row justify-content-start">
+            <div class="col">
+                <h5>Find the top ten colors in HEX codes for any image!</h5>
+                <h5>Insert the image filepath into the field below.</h5>
+                <br>
+                <form method="post">
+                    {{ form.image }}
+                    {{ form.submit }}
+                </form>
+            </div>
+            <div class="col">
+                <img src="{{ image }}">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Color</th>
+                      <th scope="col">Color Code (HEX)</th>
+                      <th scope="col">Percentage</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for color in color_rows %}
+                    <tr>
+                      <td style="background-color:{{ color.color }}"></td>
+                      <td>{{ color.color }}</td>
+                      <td>{{ color.percent }}</td>
+                    </tr>
+                  {% endfor %}
+
+                  </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
